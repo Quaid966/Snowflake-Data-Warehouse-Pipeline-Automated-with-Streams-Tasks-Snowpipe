@@ -22,7 +22,7 @@ The pipeline ingests raw data from an S3 bucket (datalake) into the Bronze layer
   - **Gold Layer**: Curated, business-ready data models (dimension and fact tables) for analytics.
 - **Automated Data Ingestion**: Utilizes Snowflake Storage Integrations and Pipes for automatic ingestion of CSV files from AWS S3 into the Bronze layer.
 - **Data Streaming**: Employs Snowflake Streams to capture changes in Bronze layer tables, triggering subsequent transformations to the Silver layer.
-- **Scheduled ETL Tasks**: Orchestrates data transformations from Bronze to Silver and Silver to Gold layers using Snowflake Tasks with defined schedules (e.g., every 1 minute).
+- **Scheduled ETL Tasks**: Orchestrates data transformations from Bronze to Silver using Snowflake Tasks with defined schedules (e.g., every 1 minute).
 - **Data Quality Checks**: Includes SQL-based quality checks for the Silver and Gold layers to ensure data integrity, consistency, and accuracy (e.g., null/duplicate primary keys,    unwanted spaces, data standardization, invalid date ranges, referential integrity).
 - **CRM Data Processing**: Handles customer information, product details, and sales transaction data from CRM sources.
 - **ERP Data Processing**: Manages customer gender, location, and product category data from ERP sources.
