@@ -1,0 +1,1 @@
+# Snowflake-Data-Warehouse-Pipeline-Automated-with-Streams-Tasks-Snowpipe
