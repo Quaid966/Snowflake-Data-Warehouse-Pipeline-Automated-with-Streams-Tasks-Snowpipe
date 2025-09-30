@@ -126,7 +126,7 @@ Snowflake-Data-Warehouse-Pipeline-Automated-with-Streams-Tasks-Snowpipe/
 │   ├── data_model.png
 │   ├── data_dictionary.md
 │   └── setup_guide.md
-├── 📂 9_samples/                # Sample data
+├── 📂 9_Dataset/                # Sample data
 │   ├── source_crm/
 │   └── source_erp/
 └── README.md
