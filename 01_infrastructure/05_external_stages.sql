@@ -4,7 +4,7 @@
 -- Create Stage for CRM Source Data
  CREATE OR REPLACE STAGE DWH.BRONZE.crm_stage
     STORAGE_INTEGRATION = s3_int
-    URL = 's3://DATALAKE32/source_crm/'
+    URL = 's3://bucket/source_crm/'
     FILE_FORMAT = (TYPE = CSV FIELD_OPTIONALLY_ENCLOSED_BY='"' SKIP_HEADER=1)
 COMMENT = 'External stage for CRM data (cust_info, prd_info, sales_details) from s3://DATALAKE32/source_crm/';
 
@@ -14,6 +14,7 @@ COMMENT = 'External stage for CRM data (cust_info, prd_info, sales_details) from
 -- Create Stage for ERP Source Data
  CREATE OR REPLACE STAGE DWH.BRONZE.erp_stage
     STORAGE_INTEGRATION = s3_int
-    URL = 's3://DATALAKE32/source_erp/'
+    URL = 's3://bucket/source_erp/'
     FILE_FORMAT = (TYPE = CSV FIELD_OPTIONALLY_ENCLOSED_BY='"' SKIP_HEADER=1)
 COMMENT = 'External stage for ERP data (cust, loc, prd_cat) from s3://DATALAKE32/source_erp/';
+
