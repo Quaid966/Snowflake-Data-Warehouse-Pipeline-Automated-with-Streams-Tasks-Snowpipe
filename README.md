@@ -23,7 +23,7 @@ The pipeline ingests raw data from an S3 bucket (datalake) into the Bronze layer
 - **Automated Data Ingestion**: Utilizes Snowflake Storage Integrations and Pipes for automatic ingestion of CSV files from AWS S3 into the Bronze layer.
 - **Data Streaming**: Employs Snowflake Streams to capture changes in Bronze layer tables, triggering subsequent transformations to the Silver layer.
 - **Scheduled ETL Tasks**: Orchestrates data transformations from Bronze to Silver and Silver to Gold layers using Snowflake Tasks with defined schedules (e.g., every 1 minute).
-- **Data Quality Checks**: Includes SQL-based quality checks for the Silver and Gold layers to ensure data integrity, consistency, and accuracy (e.g., null/duplicate primary keys, unwanted spaces, data standardization, invalid date ranges, referential integrity).
+- **Data Quality Checks**: Includes SQL-based quality checks for the Silver and Gold layers to ensure data integrity, consistency, and accuracy (e.g., null/duplicate primary keys,    unwanted spaces, data standardization, invalid date ranges, referential integrity).
 - **CRM Data Processing**: Handles customer information, product details, and sales transaction data from CRM sources.
 - **ERP Data Processing**: Manages customer gender, location, and product category data from ERP sources.
 - **Data Standardization**: Standardizes data types, formats, and values (e.g., converting marital status codes, gender codes, country abbreviations, date formats).
@@ -31,18 +31,26 @@ The pipeline ingests raw data from an S3 bucket (datalake) into the Bronze layer
 - **Role-Based Access Control (RBAC)**: Sets up a data_analyst_team role with specific permissions to access the Gold layer, ensuring secure data access.
 - **Warehouse Management**: Defines and uses a dedicated etl_wh warehouse for ETL operations, with auto-suspend and auto-resume capabilities.
 
-## 🧰 Tech Stack
+## 🧰 Technologies Used
+### ☁️ Cloud Storage (AWS)
+* **AWS S3** – Raw data lake storage
+* **AWS SQS** – Event-driven notifications
+* **IAM Role for S3 Integration** – Grants Snowflake secure access to S3
 
-- **AWS S3** – raw data lake storage.
-- **AWS SQS** – event-driven notifications.
-- **Snowflake** – cloud data warehouse.
-  - External Stages
-  - Storage Integration
-  - Pipes (auto-ingest)
-  - Streams & Tasks
-  - Views for Gold Layer
-- **SQL / DDL / DML** – transformations and schema design.
+### 🏛️ Cloud Data Warehouse (Snowflake)
+* **Snowflake** – Primary cloud data warehouse platform
+  * **External Stages** – To reference data in S3
+  * **Storage Integration** – Secure connectivity between Snowflake & S3 via IAM role
+  * **Snowpipe (Auto-ingest)** – Continuous file ingestion from S3
+  * **Streams & Tasks** – Change data capture & orchestration
+  * **Views for Gold Layer** – Curated analytical data models
 
+### 🗄️ Data Processing & Modeling
+* **SQL / DDL / DML** – Transformations, schema design, and queries
+* **Medallion Architecture** – Bronze → Silver → Gold data refinement layers
+* **Dimensional Modeling** – Star schema with Fact & Dimension tables
+* **ELT Approach** – Extract → Load → Transform methodology
+  
 ## 📋 Prerequisites
 - Snowflake account with ACCOUNTADMIN privileges
 - AWS account with S3 bucket
@@ -77,14 +85,17 @@ Analyze Product Sales:
 ```sql
 SELECT * FROM DWH.GOLD.FACT_SALES LIMIT 10;
 ```
-🛠️ Troubleshooting
-Issue	                         Solution
-Pipe not ingesting data	      Check S3 permissions and file formats
-Task execution failures      	Verify stream data and SQL syntax
-Data quality issues	          Review transformation logic in Silver layer
-Performance problems	        Scale warehouse size or optimize queries
+## 🛠️ Troubleshooting
 
+| Issue | Solution |
+|-------|----------|
+| Pipe not ingesting data | Check S3 permissions and file formats |
+| Task execution failures | Verify stream data and SQL syntax |
+| Data quality issues | Review transformation logic in Silver layer |
+| Performance problems | Scale warehouse size or optimize queries |
 
+## 📁 Project Structure
+```plaintext
 Snowflake-Data-Warehouse-Pipeline-Automated-with-Streams-Tasks-Snowpipe/
 ├── 📂 1_infrastructure/          # Core Snowflake setup
 │   ├── 01_warehouse.sql
@@ -119,51 +130,5 @@ Snowflake-Data-Warehouse-Pipeline-Automated-with-Streams-Tasks-Snowpipe/
 │   ├── source_crm/
 │   └── source_erp/
 └── README.md
-
-
-## 🛠️ Troubleshooting
-
-| Issue | Symptoms | Solution | Verification |
-|-------|----------|----------|-------------|
-| **Pipe Not Ingesting Data** | Files stuck in S3, no new records in Bronze | • Verify S3 bucket permissions<br>• Check IAM role configuration<br>• Validate file formats (CSV delimiters, headers)<br>• Confirm SQS notifications enabled | `SELECT * FROM TABLE(INFORMATION_SCHEMA.PIPE_USAGE_HISTORY(DATE_RANGE_START => DATEADD('hours', -24, CURRENT_TIMESTAMP())));` |
-| **Task Execution Failures** | Tasks show FAILED state, transformations halted | • Review SQL syntax in task definitions<br>• Verify stream has data using `SYSTEM$STREAM_HAS_DATA()`<br>• Check for data type mismatches<br>• Validate task dependencies | `SELECT * FROM TABLE(INFORMATION_SCHEMA.TASK_HISTORY()) WHERE STATE = 'FAILED';` |
-| **Data Quality Issues** | Quality scores below thresholds, analytics inaccurate | • Review transformation logic in Silver layer<br>• Check data standardization rules<br>• Validate primary key uniqueness<br>• Verify referential integrity | `SELECT * FROM DWH.MONITORING.VW_DATA_QUALITY_DASHBOARD WHERE STATUS != 'PASS';` |
-| **Performance Problems** | Slow queries, high credit consumption, timeouts | • Scale warehouse size (XS → S → M)<br>• Optimize SQL queries with clustering keys<br>• Review data pruning strategies<br>• Implement query result caching | `SELECT * FROM DWH.MONITORING.VW_WAREHOUSE_CREDIT_USAGE ORDER BY TOTAL_CREDITS_USED DESC;` |
-
-## 📁 Project Structure
-Snowflake-Data-Warehouse-Pipeline-Automated-with-Streams-Tasks-Snowpipe/
-├── 📂 1_infrastructure/ # Core Snowflake setup
-│ ├── 01_warehouse.sql # Compute resource definition
-│ ├── 02_database.sql # Database creation and configuration
-│ ├── 03_storage_integration.sql # AWS S3 connectivity setup
-│ ├── 04_schemas.sql # Medallion architecture schemas
-│ └── 05_pipes.sql # Automated data ingestion pipes
-├── 📂 2_bronze/ # Raw data layer
-│ ├── 01_tables.sql # Raw data table definitions
-│ ├── 02_stages.sql # External stage configurations
-│ └── 03_streams.sql # Change data capture streams
-├── 📂 3_silver/ # Cleaned data layer
-│ └── 01_tables.sql # Standardized and validated tables
-├── 📂 4_gold/ # Business layer
-│ ├── dim_customers.sql # Customer dimension view
-│ ├── dim_products.sql # Product dimension view
-│ └── fact_sales.sql # Sales fact table view
-├── 📂 5_orchestration/ # ETL automation
-│ └── tasks.sql # Scheduled transformation tasks
-├── 📂 6_security/ # Access control
-│ └── role_user_permissions.sql # RBAC and user management
-├── 📂 7_monitoring/ # Data quality & operations
-│ └── data_quality_checks.sql # Quality validation framework
-├── 📂 8_docs/ # Documentation
-│ ├── data_architecture.png # System architecture diagram
-│ ├── data_flow.png # Data pipeline flow
-│ ├── data_integration.png # Integration patterns
-│ ├── data_model.png # Data model relationships
-│ ├── data_dictionary.md # Field definitions and mappings
-│ └── setup_guide.md # Deployment instructions
-├── 📂 9_samples/ # Sample data
-│ ├── source_crm/ # CRM sample datasets
-│ └── source_erp/ # ERP sample datasets
-└── README.md # Project overview and documentation
-
+```
 
