@@ -44,18 +44,18 @@ GRANT USAGE ON WAREHOUSE 'DATA_ANALYST_WH' TO ROLE DATA_ANALYST_TEAM;
 -- ========================================================
 
 -- User 1: Senior Data Analyst
-CREATE OR REPLACE USER ANALYST_JOHN_SMITH
+CREATE OR REPLACE USER Da_Ali_Khan
     PASSWORD = 'TempPassword123!'  -- User will be forced to change on first login
     MUST_CHANGE_PASSWORD = TRUE
-    DEFAULT_WAREHOUSE = 'ETL_WH'
-    DEFAULT_ROLE = 'DATA_ANALYST_WH'
+    DEFAULT_WAREHOUSE = 'DATA_ANALYST_WH'
+    DEFAULT_ROLE = 'DATA_ANALYST_TEAM'
     DEFAULT_NAMESPACE = 'DWH.GOLD'
     COMMENT = 'Senior Data Analyst - Business Intelligence Team'
-    EMAIL = 'john.smith@company.com'
-    DISPLAY_NAME = 'John Smith';
+    EMAIL = 'ali.khan@company.com'
+    DISPLAY_NAME = 'Ali Khan';
 
 -- User 2: Junior Data Analyst  
-CREATE OR REPLACE USER ANALYST_SARA_CHEN
+CREATE OR REPLACE USER Da_Sana_CHEN
     PASSWORD = 'TempPassword456!'  -- User will be forced to change on first login
     MUST_CHANGE_PASSWORD = TRUE
     DEFAULT_WAREHOUSE = 'DATA_ANALYST_WH'
