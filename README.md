@@ -13,7 +13,7 @@
 
 This project establishes a robust Extract, Transform, Load (ETL) pipeline within Snowflake, designed to integrate and process data from both Customer Relationship Management (CRM) and Enterprise Resource Planning (ERP) systems. The primary purpose is to consolidate disparate business data into a unified data warehouse (DWH) with a multi-layered architecture: Bronze, Silver, and Gold. This structure ensures data quality, consistency, and readiness for analytical and reporting purposes.
 
-The pipeline ingests raw data from an S3 bucket (datalake) into the Bronze layer, where it undergoes minimal transformation. Subsequently, data is cleaned, standardized, and integrated in the Silver layer. Finally, the Gold layer provides curated, business-ready data models (fact and dimension tables) optimized for reporting and advanced analytics. The system leverages Snowflake's features such as warehouses, databases, schemas, stages, pipes, streams, and tasks to automate data ingestion, transformation, and quality checks. It also includes role-based access control for data analysts.
+The pipeline ingests raw data from an S3 bucket  into the Bronze layer, where it undergoes minimal transformation. Subsequently, data is cleaned, standardized, and integrated in the Silver layer. Finally, the Gold layer provides curated, business-ready data models (fact and dimension tables) optimized for reporting and advanced analytics. The system leverages Snowflake's features such as warehouses, databases, schemas, stages, pipes, streams, and tasks to automate data ingestion, transformation, and quality checks. It also includes role-based access control for data analysts.
 
 ![Snowflake Data Pipeline Architecture](8_docs/data%20architecture%20Diagram.drawio.png)
 
