@@ -15,6 +15,9 @@ This project establishes a robust Extract, Transform, Load (ETL) pipeline within
 
 The pipeline ingests raw data from an S3 bucket (datalake) into the Bronze layer, where it undergoes minimal transformation. Subsequently, data is cleaned, standardized, and integrated in the Silver layer. Finally, the Gold layer provides curated, business-ready data models (fact and dimension tables) optimized for reporting and advanced analytics. The system leverages Snowflake's features such as warehouses, databases, schemas, stages, pipes, streams, and tasks to automate data ingestion, transformation, and quality checks. It also includes role-based access control for data analysts.
 
+![Snowflake Data Pipeline Architecture](8_docs/data%20architecture%20Diagram.drawio.png)
+
+*If the image doesn't display above, you can view it in the `/docs` directory.*
 ## ✨ Features
 - **Multi-Layered Data Architecture**: Implements a Medallion Architecture (Bronze, Silver, Gold) for progressive data refinement.
   - **Bronze Layer**: Raw data ingestion from S3, minimal transformations.
