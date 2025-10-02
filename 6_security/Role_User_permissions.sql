@@ -37,7 +37,7 @@ GRANT SELECT ON FUTURE VIEWS IN SCHEMA DWH.MONITORING TO ROLE DATA_ANALYST_TEAM;
 -- GRANT WAREHOUSE PRIVILEGES
 -- ========================================================
 
-GRANT USAGE ON WAREHOUSE 'DATA_ANALYST_WH' TO ROLE DATA_ANALYST_TEAM;
+GRANT USAGE ON WAREHOUSE DATA_ANALYST_WH TO ROLE DATA_ANALYST_TEAM;
 
 -- ========================================================
 -- CREATE DATA ANALYST USERS
@@ -50,7 +50,7 @@ CREATE OR REPLACE USER Da_Ali_Khan
     DEFAULT_WAREHOUSE = 'DATA_ANALYST_WH'
     DEFAULT_ROLE = 'DATA_ANALYST_TEAM'
     DEFAULT_NAMESPACE = 'DWH.GOLD'
-    COMMENT = 'Senior Data Analyst - Business Intelligence Team'
+    COMMENT = 'Senior Data Analyst'
     EMAIL = 'ali.khan@company.com'
     DISPLAY_NAME = 'Ali Khan';
 
@@ -61,6 +61,7 @@ CREATE OR REPLACE USER Da_Sana_CHEN
     DEFAULT_WAREHOUSE = 'DATA_ANALYST_WH'
     DEFAULT_ROLE = 'DATA_ANALYST_TEAM'
     DEFAULT_NAMESPACE = 'DWH.GOLD'
-    COMMENT = 'Junior Data Analyst - Business Intelligence Team'
+    COMMENT = 'Junior Data Analyst'
     EMAIL = 'sana.chen@company.com'
     DISPLAY_NAME = 'Sana Chen';
+
