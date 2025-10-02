@@ -230,18 +230,4 @@ SELECT * FROM DWH.MONITORING.VW_GOLD_QUALITY_SUMMARY ;
    - Check stream latency with `SHOW STREAMS`
    - Verify data is being inserted into source tables
 
-### Monitoring Commands:
-```sql
--- Check task execution history
-SELECT * FROM TABLE(INFORMATION_SCHEMA.TASK_HISTORY());
-
--- Monitor stream usage
-SELECT * FROM TABLE(INFORMATION_SCHEMA.STREAM_HISTORY());
-
--- Check pipe load history
-SELECT * FROM TABLE(INFORMATION_SCHEMA.COPY_HISTORY(
-  TABLE_NAME => 'bronze.crm_raw'
-));
-```
-
 This implementation provides a complete, automated data pipeline from raw S3 data to business-ready analytics views with proper quality monitoring and security controls.
