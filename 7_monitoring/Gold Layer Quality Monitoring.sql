@@ -4,7 +4,7 @@
 -- dimension and fact tables
 -- =====================================================
 
-CREATE OR REPLACE VIEW DWH.gold.VIEW_GOLD_QUALITY_DASHBOARD AS
+CREATE OR REPLACE VIEW DWH.MONITORING.VW_GOLD_QUALITY_DASHBOARD AS
 WITH GOLD_QUALITY_CHECKS AS (
     -- ====================================================================
     -- DIM_CUSTOMERS Quality Checks
@@ -15,7 +15,7 @@ WITH GOLD_QUALITY_CHECKS AS (
         'DIM_CUSTOMERS' AS TABLE_NAME,
         'PRIMARY_KEY_UNIQUENESS' AS CHECK_TYPE,
         'Critical' AS SEVERITY,
-        COUNT(customer_key) AS TOTAL_RECORDS,
+        COUNT(*) AS TOTAL_RECORDS,
         COUNT(CASE WHEN duplicate_count > 1 THEN 1 END) AS FAILED_RECORDS,
         'DUPLICATE_CUSTOMER_KEYS' AS FAILURE_TYPES,
         CURRENT_TIMESTAMP() AS CHECK_TIMESTAMP
@@ -133,14 +133,12 @@ ORDER BY
     QUALITY_SCORE_PCT ASC,
     TABLE_NAME;
 
-    --select * from DWH.MONITORING.VW_GOLD_QUALITY_DASHBOARD 
-
     -- =====================================================
 -- GOLD LAYER QUALITY SUMMARY DASHBOARD
 -- High-level overview of Gold layer data quality
 -- =====================================================
 
-CREATE OR REPLACE VIEW DWH.gold.VIEW_GOLD_QUALITY_SUMMARY AS
+CREATE OR REPLACE VIEW DWH.MONITORING.VW_GOLD_QUALITY_SUMMARY AS
 SELECT 
     TABLE_NAME,
     COUNT(*) AS TOTAL_CHECKS,
@@ -178,5 +176,3 @@ ORDER BY
         WHEN 'EXCELLENT' THEN 5
     END,
     AVG_QUALITY_SCORE ASC;
-
--- select 8 FROM DWH.MONITORING.VW_GOLD_QUALITY_SUMMARY
