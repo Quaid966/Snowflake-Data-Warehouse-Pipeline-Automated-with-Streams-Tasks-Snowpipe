@@ -1,5 +1,5 @@
 -- ========================================================
-	=> CREATING TABLE IN Silver SCHEMA
+	-- => CREATING TABLE IN Silver SCHEMA
 -- ========================================================
 USE SCHEMA DWH.SILVER
 --	cust_info (CRM Customers – standardized)
