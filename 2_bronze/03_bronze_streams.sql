@@ -1,5 +1,5 @@
 -- ========================================================
-	=> CREATING Streams on Bronze Tables
+	-- => CREATING Streams on Bronze Tables
 -- ========================================================
 -- Customer Info Stream
 CREATE OR REPLACE STREAM DWH.BRONZE.stream_crm_cust_info
@@ -36,3 +36,4 @@ CREATE OR REPLACE STREAM DWH.BRONZE.stream_erp_prd_cat
 ON TABLE DWH.BRONZE.ERP_PRD_CAT
 APPEND_ONLY = TRUE
 COMMENT = 'Stream to capture changes from ERP Product Category for Bronze → Silver ETL';
+
