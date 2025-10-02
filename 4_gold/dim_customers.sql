@@ -20,5 +20,5 @@ FROM DWH.SILVER.CRM_CUST_INFO ci
 LEFT JOIN DWH.SILVER.ERP_CUST_GNDR ca
     ON ci.cst_key = ca.cid
 LEFT JOIN DWH.SILVER.ERP_CUST_LOC la
-
     ON ci.cst_key = la.cid;
+
