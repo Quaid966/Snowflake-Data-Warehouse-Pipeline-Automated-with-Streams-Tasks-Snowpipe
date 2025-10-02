@@ -1,3 +1,6 @@
+-- =============================================================================
+-- Create Dimension: GOLD.DIM_CUSTOMERS
+-- =============================================================================
 CREATE OR REPLACE VIEW DWH.GOLD.DIM_CUSTOMERS AS
 SELECT
     ROW_NUMBER() OVER (ORDER BY ci.cst_id) AS customer_key, -- surrogate key
@@ -17,4 +20,5 @@ FROM DWH.SILVER.CRM_CUST_INFO ci
 LEFT JOIN DWH.SILVER.ERP_CUST_GNDR ca
     ON ci.cst_key = ca.cid
 LEFT JOIN DWH.SILVER.ERP_CUST_LOC la
+
     ON ci.cst_key = la.cid;
