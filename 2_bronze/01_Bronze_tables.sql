@@ -1,5 +1,5 @@
 -- ========================================================
-	=> CREATE TABLEs IN Bronze SCHEMA
+	-- => CREATE TABLEs IN Bronze SCHEMA
 -- ========================================================
 USE SCHEMA DWH.BRONZE
 
@@ -80,4 +80,5 @@ CREATE OR REPLACE TABLE DWH.BRONZE.erp_prd_cat (
     _source_file STRING,
     _file_row_number INTEGER 
 )
+
 COMMENT = 'Raw ERP product category info ingested from source_erp/PX_CAT_G1V2...';
