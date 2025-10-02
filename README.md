@@ -61,6 +61,9 @@ The pipeline ingests raw data from an S3 bucket  into the Bronze layer, where it
 
 ## 🚀 Installation Instructions
 To set up this data pipeline, you will need access to a Snowflake account and an AWS S3 bucket. Follow these steps to deploy the pipeline:
+
+Step-by-Step Project Implementation Guide [CLICK HERE](https://github.com/Quaid966/Snowflake-Data-Warehouse-Pipeline-Automated-with-Streams-Tasks-Snowpipe/blob/main/8_docs/Implementation%20Guide.md)
+
 ### 1. Snowflake Account Setup:
 - Ensure you have an active Snowflake account with appropriate administrative privileges.
 ### 2. AWS S3 Bucket Configuration:
