@@ -25,6 +25,6 @@ COMMENT = 'Schema to manage Snowflake tasks for orchestrating Bronze → Silver 
 -- ========================================================
 	--=> CREATING MONITORING Schema
 -- ========================================================
-CREATE SCHEMA DWH.MONITORING;
-
+CREATE SCHEMA DWH.MONITORING
 COMMENT = 'Centralized monitoring data quality';
+
