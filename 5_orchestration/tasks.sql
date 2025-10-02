@@ -1,5 +1,5 @@
 -- ========================================================
-	=> CREATING TASKS IN TASKS Schema
+	-- => CREATING TASKS IN TASKS Schema
 -- ========================================================
 
 CREATE OR REPLACE TASK DWH.TASKS.TASK_CRM_CUST_INFO_TO_SILVER
@@ -61,10 +61,7 @@ SELECT
     -- METADATA$FILE_ROW_NUMBER -- populate _file_row_number
 FROM DWH.BRONZE.stream_crm_prd_info;
 
-
-
 --	Sales Details
-
 CREATE OR REPLACE TASK DWH.TASKS.task_crm_sales_details_to_silver
 WAREHOUSE = ETL_WH
 SCHEDULE = '2 MINUTES'  -- every hour
@@ -91,7 +88,6 @@ SELECT
     CURRENT_TIMESTAMP
 FROM DWH.BRONZE.stream_crm_sales_details;
 
-
 --	ERP Customer Gender
 CREATE OR REPLACE TASK DWH.TASKS.task_erp_cust_gndr_to_silver
 WAREHOUSE = ETL_WH
@@ -110,8 +106,6 @@ SELECT
     CURRENT_TIMESTAMP
 FROM DWH.BRONZE.stream_erp_cust_gndr;
 
-	
-
 --	ERP Customer Location
 CREATE OR REPLACE TASK DWH.TASKS.task_erp_cust_loc_to_silver
 WAREHOUSE = ETL_WH
@@ -129,7 +123,6 @@ SELECT
     END AS cntry,
     CURRENT_TIMESTAMP
 FROM DWH.BRONZE.STREAM_ERP_CUST_LOC;
-
 
 --	ERP Product Category
 CREATE OR REPLACE TASK DWH.TASKS.task_erp_prd_cat_to_silver
@@ -153,3 +146,4 @@ ALTER TASK DWH.TASKS.task_crm_sales_details_to_silver RESUME;
 ALTER TASK DWH.TASKS.task_erp_cust_gndr_to_silver RESUME;
 ALTER TASK DWH.TASKS.task_erp_cust_loc_to_silver RESUME;
 ALTER TASK DWH.TASKS.task_erp_prd_cat_to_silver RESUME;
+
