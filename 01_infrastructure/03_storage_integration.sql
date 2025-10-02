@@ -1,5 +1,5 @@
 -- ========================================================
-	=> CREATING Storage Integration 
+	--=> CREATING Storage Integration 
 -- ========================================================
 CREATE OR REPLACE STORAGE INTEGRATION s3_int
     TYPE = EXTERNAL_STAGE
@@ -9,3 +9,4 @@ CREATE OR REPLACE STORAGE INTEGRATION s3_int
     STORAGE_ALLOWED_LOCATIONS = ('s3://bucket/')
 
 COMMENT = 'Storage integration for S3 bucket DATALAKE32, used for CRM & ERP raw data ingestion';
+
