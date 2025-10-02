@@ -1,9 +1,9 @@
 -- ========================================================
 	-- => CREATE TABLEs IN Bronze SCHEMA
 -- ========================================================
-USE SCHEMA DWH.BRONZE
+USE SCHEMA DWH.BRONZE;
 
-CREATE OR REPLACE TABLE DWH.BRONZE.crm_cust_info (
+CREATE OR REPLACE TRANSIENT TABLE DWH.BRONZE.crm_cust_info (
     cst_id              integer,
     cst_key             STRING,
     cst_firstname       STRING,
@@ -18,7 +18,7 @@ CREATE OR REPLACE TABLE DWH.BRONZE.crm_cust_info (
 COMMENT = 'Raw CRM customer info ingested from source_crm/cust_info....';
 
 
-CREATE OR REPLACE TABLE DWH.BRONZE.crm_prd_info (
+CREATE OR REPLACE TRANSIENT TABLE DWH.BRONZE.crm_prd_info (
     prd_id        INTEGER,
     prd_key       STRING,
     prd_nm        STRING,
@@ -33,7 +33,7 @@ CREATE OR REPLACE TABLE DWH.BRONZE.crm_prd_info (
 COMMENT = 'Raw CRM product info ingested from source_crm/prd_info...';
 
 
-CREATE OR REPLACE TABLE DWH.BRONZE.crm_sales_details (
+CREATE OR REPLACE TRANSIENT TABLE DWH.BRONZE.crm_sales_details (
     sls_ord_num    STRING,
     sls_prd_key    STRING,
     sls_cust_id    INTEGER,
@@ -50,7 +50,7 @@ CREATE OR REPLACE TABLE DWH.BRONZE.crm_sales_details (
 COMMENT = 'Raw CRM sales details ingested from source_crm/sale_details...';
 
 
-CREATE OR REPLACE TABLE DWH.BRONZE.erp_cust_gndr (
+CREATE OR REPLACE TRANSIENT TABLE DWH.BRONZE.erp_cust_gndr (
     cid       STRING,
     bdate     DATE,
     gen       STRING,
@@ -61,7 +61,7 @@ CREATE OR REPLACE TABLE DWH.BRONZE.erp_cust_gndr (
 COMMENT = 'Raw ERP customer gender info ingested from source_erp/CUST_AZ12...';
 
 
-CREATE OR REPLACE TABLE DWH.BRONZE.erp_cust_loc (
+CREATE OR REPLACE TRANSIENT TABLE DWH.BRONZE.erp_cust_loc (
     cid        STRING,
     cntry      STRING,
     _ingest_ts   TIMESTAMP_NTZ,
@@ -71,7 +71,7 @@ CREATE OR REPLACE TABLE DWH.BRONZE.erp_cust_loc (
 COMMENT = 'Raw ERP customer location info ingested from source_erp/LOC_A101...';
 
 
-CREATE OR REPLACE TABLE DWH.BRONZE.erp_prd_cat (
+CREATE OR REPLACE TRANSIENT TABLE DWH.BRONZE.erp_prd_cat (
     id           STRING,
     cat          STRING,
     subcat       STRING,
@@ -80,5 +80,5 @@ CREATE OR REPLACE TABLE DWH.BRONZE.erp_prd_cat (
     _source_file STRING,
     _file_row_number INTEGER 
 )
-
 COMMENT = 'Raw ERP product category info ingested from source_erp/PX_CAT_G1V2...';
+
