@@ -1,5 +1,5 @@
 -- ========================================================
-	=> CREATING PIPE
+	-- => CREATING PIPE
 -- ========================================================
 use schema BRONZE;
 
@@ -179,4 +179,5 @@ FROM (
     FROM @DWH.BRONZE.erp_stage
 )
 PATTERN = 'PX_CAT_G1V2_.*\.csv'
+
 ON_ERROR = CONTINUE;
